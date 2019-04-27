@@ -4,7 +4,7 @@ export const defaultAdventurers: Adventurer[] = [
   {
     id: 1,
     name: 'Luke',
-    classes: ['Priest', 'Fighter', 'Druid'],
+    classes: ['priest', 'fighter', 'druid'],
     level: 1,
   },
 ];

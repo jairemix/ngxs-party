@@ -1,20 +1,29 @@
 import { AdventurerClass } from './adventurer-class.type';
 
-export const AdventurerClasses: AdventurerClass[] = [
+export const adventurerClasses: AdventurerClass[] = [
   {
-    title: 'priest',
-    calculateHealth: l => 40 + l * 10,
-  },
-  {
-    title: 'druid',
+    id: 'druid',
+    title: 'Druid',
     calculateHealth: l => 41 + l * 11,
   },
   {
-    title: 'wizard',
+    id: 'wizard',
+    title: 'Wizard',
     calculateHealth: l => 38 + l * 8,
   },
   {
-    title: 'fighter',
+    id: 'priest',
+    title: 'Priest',
+    calculateHealth: l => 40 + l * 10,
+  },
+  {
+    id: 'rogue',
+    title: 'Rogue',
+    calculateHealth: l => 42 + l * 13,
+  },
+  {
+    id: 'fighter',
+    title: 'Fighter',
     calculateHealth: l => 50 + l * 15,
   },
 ];
