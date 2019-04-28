@@ -5,12 +5,3 @@ export interface Adventurer {
   level: number;
 }
 
-export interface AdventurerStats {
-  health: number;
-  defences: {
-    deflection: number;
-    fortitude: number;
-    reflex: number;
-    will: number;
-  };
-}

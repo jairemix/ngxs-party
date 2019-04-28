@@ -6,12 +6,14 @@ import { defaultAdventurers } from '../models/adventurer/default-adventurers';
 
 export class PartyStateModel {
   adventurers: Adventurer[];
+  nextID: number;
 }
 
 @State<PartyStateModel>({
   name: 'party',
   defaults: {
     adventurers: defaultAdventurers,
+    nextID: defaultAdventurers.length + 1,
   },
 })
 export class PartyState {
@@ -26,7 +28,7 @@ export class PartyState {
 
     const adventurer = {
       ...action.payload,
-      id: state.adventurers.length + 1,
+      id: state.nextID,
     };
 
     context.patchState({
@@ -34,6 +36,7 @@ export class PartyState {
         ...state.adventurers,
         adventurer,
       ],
+      nextID: state.nextID + 1,
     });
   }
 
