@@ -1,9 +1,6 @@
-import { UpdateAdventurer, DeleteAdventurer } from './../../actions/party.actions';
-import { AdventurerClassState } from './../../state/adventurer-class.state';
 import { AdventurerClass } from './../../models/adventurer-class/adventurer-class.type';
 import { Adventurer } from './../../models/adventurer/adventurer.type';
-import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges, Output } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Dictionary } from 'src/app/utils/dictionary.type';
 import { map, reduce } from 'lodash-es';
 
@@ -16,17 +13,14 @@ import { map, reduce } from 'lodash-es';
 export class AdventurerRowComponent implements OnChanges {
 
   @Input() adventurer: Adventurer;
-
-  private classDict: Dictionary<AdventurerClass>;
+  @Input() classDict: Dictionary<AdventurerClass>;
+  @Output() levelUp = new EventEmitter();
+  @Output() deleteAdventurer = new EventEmitter();
 
   // derived values
   classes: AdventurerClass[];
   classString: string;
   health: number;
-
-  constructor(private store: Store) {
-    this.classDict = store.selectSnapshot(AdventurerClassState.getClassDict);
-  }
 
   ngOnChanges({ adventurer }: SimpleChanges) {
     const current = adventurer.currentValue as Adventurer;
@@ -48,15 +42,15 @@ export class AdventurerRowComponent implements OnChanges {
     }, 0) / this.classes.length);
   }
 
-  levelUp() {
-    this.store.dispatch(new UpdateAdventurer({
-      ...this.adventurer,
-      level: this.adventurer.level + 1,
-    }));
-  }
+  // levelUp() {
+  //   this.store.dispatch(new UpdateAdventurer({
+  //     ...this.adventurer,
+  //     level: this.adventurer.level + 1,
+  //   }));
+  // }
 
-  deleteAdventurer() {
-    this.store.dispatch(new DeleteAdventurer(this.adventurer));
-  }
+  // deleteAdventurer() {
+  //   this.store.dispatch(new DeleteAdventurer(this.adventurer));
+  // }
 
 }

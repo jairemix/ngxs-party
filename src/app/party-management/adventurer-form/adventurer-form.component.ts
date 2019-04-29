@@ -1,7 +1,7 @@
 import { AdventurerClassState } from './../../state/adventurer-class.state';
 import { CreateAdventurer } from './../../actions/party.actions';
 import { Store, Select } from '@ngxs/store';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, Output } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { mapValues } from 'lodash-es';
 import { Dictionary } from 'src/app/utils/dictionary.type';
@@ -22,58 +22,44 @@ interface AdventurerFormData {
   styleUrls: ['./adventurer-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdventurerFormComponent implements OnInit, OnDestroy {
+export class AdventurerFormComponent implements OnInit {
 
   formGroup: FormGroup;
   formControls: Dictionary<AbstractControl>;
   defaults: AdventurerFormData;
 
-  @Select(AdventurerClassState.getClasses) adventurerClasses$: Observable<AdventurerClass[]>;
-  adventurerClasses: AdventurerClass[];
+  @Input() adventurerClasses: AdventurerClass[];
+  @Output() shouldSubmit = new EventEmitter<Adventurer>();
 
-  private destroyed$ = new Subject<void>();
-
-  constructor(private store: Store) {
-
-    this.adventurerClasses$.pipe(
-      takeUntil(this.destroyed$),
-    ).subscribe((a) => this.adventurerClasses = a);
-
+  ngOnInit() {
+    const defaultClass = this.adventurerClasses[0] ? this.adventurerClasses[0].id : '';
     this.formGroup = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      class: new FormControl(this.adventurerClasses[0] && this.adventurerClasses[0].id, [Validators.required]),
+      class: new FormControl(defaultClass, [Validators.required]),
       level: new FormControl(1, [Validators.required]),
     });
     this.formControls = this.formGroup.controls;
     this.defaults = mapValues(this.formControls, 'value') as any;
   }
 
-  ngOnInit() {
-  }
-
-  createAdventurer() {
+  submit() {
     if (!this.formGroup.valid) {
       alert('invalid');
       return;
     }
     const data = this.formGroup.value as AdventurerFormData;
-    this.store.dispatch(new CreateAdventurer({
+    this.shouldSubmit.emit({
       id: null,
       name: data.name,
       level: data.level,
       classes: [data.class],
-    }));
+    });
     this.clear();
   }
 
   clear() {
     this.formGroup.reset();
     this.formGroup.setValue(this.defaults);
-  }
-
-  ngOnDestroy() {
-    this.destroyed$.next();
-    this.destroyed$.complete();
   }
 
 }
