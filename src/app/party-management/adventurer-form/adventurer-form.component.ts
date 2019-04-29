@@ -1,7 +1,7 @@
 import { AdventurerClassState } from './../../state/adventurer-class.state';
 import { CreateAdventurer } from './../../actions/party.actions';
 import { Store, Select } from '@ngxs/store';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { mapValues } from 'lodash-es';
 import { Dictionary } from 'src/app/utils/dictionary.type';

@@ -2,7 +2,7 @@ import { UpdateAdventurer, DeleteAdventurer } from './../../actions/party.action
 import { AdventurerClassState } from './../../state/adventurer-class.state';
 import { AdventurerClass } from './../../models/adventurer-class/adventurer-class.type';
 import { Adventurer } from './../../models/adventurer/adventurer.type';
-import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges, Output } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Dictionary } from 'src/app/utils/dictionary.type';
 import { map, reduce } from 'lodash-es';
@@ -16,6 +16,7 @@ import { map, reduce } from 'lodash-es';
 export class AdventurerRowComponent implements OnChanges {
 
   @Input() adventurer: Adventurer;
+
   private classDict: Dictionary<AdventurerClass>;
 
   // derived values
