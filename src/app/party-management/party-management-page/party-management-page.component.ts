@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { PartyState } from 'src/app/party-management/state/party.state';
 import { Adventurer } from 'src/app/party-management/models/adventurer/adventurer.type';
 import { Observable } from 'rxjs';
-import { UpdateAdventurer, DeleteAdventurer, CreateAdventurer } from 'src/app/party-management/actions/party.actions';
+import { UpdateAdventurer, DeleteAdventurer, CreateAdventurer, LoadParty } from 'src/app/party-management/actions/party.actions';
 import { AdventurerClassState } from 'src/app/party-management/state/adventurer-class.state';
 import { AdventurerClass } from 'src/app/party-management/models/adventurer-class/adventurer-class.type';
 import { Dictionary } from 'src/app/utils/dictionary.type';
@@ -25,6 +25,8 @@ export class PartyManagementPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // wehre should we load the data???
+    this.store.dispatch(new LoadParty());
   }
 
   levelUp(adventurer: Adventurer) {

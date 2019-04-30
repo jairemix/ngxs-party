@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdventurerFormComponent } from './adventurer-form/adventurer-form.component';
 import { RouterModule } from '@angular/router';
+import { PartyService } from './services/party.service';
 
 const routes = [
   {
@@ -25,6 +26,9 @@ const routes = [
       AdventurerClassState,
     ]),
     ReactiveFormsModule,
+  ],
+  providers: [
+    PartyService,
   ],
   declarations: [
     PartyManagementPageComponent,
