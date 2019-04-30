@@ -1,5 +1,5 @@
 import { Dictionary } from 'lodash';
-import { AdventurerClass } from './../models/adventurer-class/adventurer-class.type';
+import { AdventurerClass } from '../models/adventurer-class/adventurer-class.type';
 import { State, Selector, StateContext, Action } from '@ngxs/store';
 import { adventurerClasses } from '../models/adventurer-class/adventurer-classes.const';
 import { keyBy } from 'lodash-es';

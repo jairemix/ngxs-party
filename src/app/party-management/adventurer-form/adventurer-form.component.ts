@@ -1,12 +1,12 @@
-import { AdventurerClassState } from './../../state/adventurer-class.state';
-import { CreateAdventurer } from './../../actions/party.actions';
+import { AdventurerClassState } from '../state/adventurer-class.state';
+import { CreateAdventurer } from '../actions/party.actions';
 import { Store, Select } from '@ngxs/store';
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { mapValues } from 'lodash-es';
 import { Dictionary } from 'src/app/utils/dictionary.type';
-import { Adventurer } from 'src/app/models/adventurer/adventurer.type';
-import { AdventurerClass } from 'src/app/models/adventurer-class/adventurer-class.type';
+import { Adventurer } from 'src/app/party-management/models/adventurer/adventurer.type';
+import { AdventurerClass } from 'src/app/party-management/models/adventurer-class/adventurer-class.type';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

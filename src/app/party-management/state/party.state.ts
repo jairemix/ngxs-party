@@ -1,4 +1,4 @@
-import { CreateAdventurer, DeleteAdventurer, UpdateAdventurer } from './../actions/party.actions';
+import { CreateAdventurer, DeleteAdventurer, UpdateAdventurer } from '../actions/party.actions';
 import { State, Selector, StateContext, Action } from '@ngxs/store';
 import { Adventurer } from '../models/adventurer/adventurer.type';
 import { filter, findIndex } from 'lodash-es';
